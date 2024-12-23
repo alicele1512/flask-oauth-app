@@ -47,4 +47,17 @@ function getLoggedInUserInfo() {
     }
     return null;
 }
+
+function loadTranslations($lang) {
+    $default_lang = 'en';
+    $lang_file = __DIR__ . "/../translations/{$lang}.php";
+    if (!file_exists($lang_file)) {
+        $lang_file = __DIR__ . "/../translations/{$default_lang}.php";
+    }
+    return include($lang_file);
+}
+
+function translate($key, $translations) {
+    return $translations[$key] ?? $key;
+}
 ?>
